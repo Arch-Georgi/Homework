@@ -4,20 +4,14 @@
    <title>typeOf</title>
    <script type="text/javascript">
    function typeOf( variable ) {
-      var type = typeof variable;
       // calculations
 	  switch(true) {
-		case variable === null : type = 'null';
-		break;
-		case isNaN(variable) && type === "number" : type = 'NaN';
-		break;
-		case variable instanceof Boolean : type = 'boolean';
-		break;
-		case variable instanceof String : type = 'string';
-		break;
-		case variable instanceof Number : type = 'number';
-		break;
-		case variable instanceof Array : type = 'array';
+		case variable === null : return type = 'null';
+		case isNaN(variable) && typeof variable === "number" :  return type = 'NaN';
+		case variable instanceof Boolean : return type = 'boolean';
+		case variable instanceof String : return type = 'string';
+		case variable instanceof Number : return type = 'number';
+		case variable instanceof Array : return type = 'array';
 	  }
       return type;
    }
@@ -35,7 +29,7 @@
    };
    for ( var type in types ) {
       types[ type ].forEach( function ( item ) {
-         console.assert( typeOf( item ) === type, item + ' is ' + type );
+         console.log( typeOf( item ) === type, item + ' is ' + type );
       });
    }
    </script>
