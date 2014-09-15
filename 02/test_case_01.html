@@ -6,12 +6,12 @@
    function typeOf( variable ) {
       // calculations
 	  switch(true) {
-		case variable === null : return type = 'null';
-		case isNaN(variable) && typeof variable === "number" :  return type = 'NaN';
-		case variable instanceof Boolean : return type = 'boolean';
-		case variable instanceof String : return type = 'string';
-		case variable instanceof Number : return type = 'number';
-		case variable instanceof Array : return type = 'array';
+		case variable === null : return 'null';
+		case Number.isNaN(variable) && typeof variable === "number" :  return 'NaN';
+		case variable instanceof Boolean : return 'boolean';
+		case variable instanceof String : return 'string';
+		case variable instanceof Number : return 'number';
+		case variable instanceof Array : return 'array';
 	  }
       return typeof variable;
    }
