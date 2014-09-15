@@ -7,7 +7,7 @@
       // calculations
 	  switch(true) {
 		case variable === null : return 'null';
-		case Number.isNaN(variable) && typeof variable === "number" :  return 'NaN';
+		case Number.isNaN(variable) :  return 'NaN';
 		case variable instanceof Boolean : return 'boolean';
 		case variable instanceof String : return 'string';
 		case variable instanceof Number : return 'number';
