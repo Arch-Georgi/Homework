@@ -29,7 +29,7 @@
    };
    for ( var type in types ) {
       types[ type ].forEach( function ( item ) {
-         console.log( typeOf( item ) === type, item + ' is ' + type );
+         console.assert( typeOf( item ) === type, item + ' is ' + type );
       });
    }
    </script>
