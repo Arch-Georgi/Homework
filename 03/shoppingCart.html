@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Shopping Cart</title>
+   <style>
+	hr {
+		margin: 0;
+		border-width: 1px 0 0 0;
+	}
+   </style>
+</head>
+<body>
+<p id="demo"></p>
+	<script type="text/javascript">
+		var shopping_cart = [
+			{ product : "T-shirt" , price : 10},
+			{ product : "Jeans" , price : 69.9},
+			{ product : "Jacket" , price : 119.99}
+		],
+		text = "";
+		for (var i = 0, l=shopping_cart.length; i < l; i++){
+			 text += shopping_cart[i].product + " " + shopping_cart[i].price.toFixed(2) + "<br /><hr />";
+		}
+		document.getElementById("demo").innerHTML = "<hr />" + text;
+
+	</script>
+</body>
+</html>
