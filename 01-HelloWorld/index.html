@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Hello World!</title>
+	</head>
+	<body>
+		<p id="demo"></p>
+		<script type="text/javascript">
+			var greeting = prompt("Please enter your greeting", "");
+			var firstName = prompt("Please enter your first name", "");
+			var secondName = prompt("Please enter your second name", "");
+			var sentence = greeting + " " + firstName + " " + secondName + "!";
+			if (greeting !== null && firstName !== null && secondName !== null) {
+				document.getElementById("demo").innerHTML = sentence;
+				document.title = sentence;
+			};
+		</script>
+	</body>
+</html>
