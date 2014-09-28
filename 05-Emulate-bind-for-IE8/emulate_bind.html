@@ -7,9 +7,11 @@
    <script type="text/javascript">
 		if ( ! Function.prototype.bind ) {
 		   Function.prototype.bind = function (owner) {
-			  var that= this;
+			  var that= this,
+			  slice = Array.prototype.slice, 
+			  args = slice.call(arguments, 1);
 			  return function () {
-				 return that.apply(owner, arguments);
+				 return that.apply(owner, args.concat(slice.call(arguments)));
 			  }
 		   }
 		}
