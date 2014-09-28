@@ -18,17 +18,17 @@
       };
       this.getMultiple = function ( names ) {
 	  // returns array of values
-			for( var i=0, l=names.length, arr = []; i < l; i++){
-				 return arr.push(names[i]);
-			}
+	for( var i=0, l=names.length, arr = []; i < l; i++){
+		 return arr.push(names[i]);
+	}
       };
       this.setMultiple = function ( pairs ) {
          // accepts an object of key:values and for each pair sets
          // name=key and value=value
-		 for (var names in pairs) {
-			  pairs[names] = pairs;
-			  return this;
-		 }
+	 for (var names in pairs) {
+		  pairs[names] = pairs;
+		  return this;
+	 }
       };
    }
 
