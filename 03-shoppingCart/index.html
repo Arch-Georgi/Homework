@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Shopping Cart</title>
+</head>
+<body>
+<script type="text/javascript">
+	var shopping_cart = [
+		{ product : "T-shirt" , price : 10},
+		{ product : "Jeans" , price : 69.9},
+		{ product : "Jacket" , price : 119.99}
+	],
+	text = "";
+	for (var i = 0, l=shopping_cart.length; i < l; i++){
+		var toFixed = shopping_cart[i].price.toFixed(2),
+		product = shopping_cart[i].product,
+		separator = new Array((65 + 1) - (product.length + toFixed.length)).join(" ");
+		text += product + separator + toFixed + '\n';
+	}
+	console.log(text);
+</script>
+</body>
+</html>
