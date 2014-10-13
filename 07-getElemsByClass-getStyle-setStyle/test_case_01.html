@@ -66,9 +66,7 @@ HTMLElement.prototype.getStyle = function (style) {
 	if (document.defaultView && document.defaultView.getComputedStyle) {
 		return document.defaultView.getComputedStyle(this, false).getPropertyValue(style);
 	} else if (this.currentStyle) {
-		return this.currentStyle[style.replace(/\-(\w)/g, function (strMatch, p1) {
-			return p1.toUpperCase();
-		})];
+		return this.currentStyle;
 	}
 };
 
