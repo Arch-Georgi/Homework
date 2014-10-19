@@ -62,13 +62,36 @@ function getElemsByClass( name , ancestor  ) {
 }
 
 //HTMLElement.prototype.getStyle 
-HTMLElement.prototype.getStyle = function (style) {
-	if (document.defaultView && document.defaultView.getComputedStyle) {
-		return document.defaultView.getComputedStyle(this, false).getPropertyValue(style);
-	} else if (this.currentStyle) {
-		return this.currentStyle;
-	}
+HTMLElement.prototype.getStyle = function getStyle(key) {
+
+    if (typeof key == 'string') {
+        return window.getComputedStyle(this).getPropertyValue(key);    
+    } else if (typeof key == 'object') {
+        var result = new Object();
+        for (var i = 0; i < key.length; i++) {
+            result[key[i]] = this.getStyle(key[i]);
+        }
+        return result;
+    }
+
 };
+
+//rgb To Hex 
+function rgbToHex( color ) {
+   if ( color.indexOf('rgb') !== 0 ) {
+      return color;
+   }
+   var rgb = color.substring( color.indexOf('(') + 1, color.indexOf(')') )
+         .split(' ').join('')
+         .split(',');
+   
+   var hex = '#';
+   for ( var i=0; i<3; i += 1 ) {
+      var value = Number(rgb[i]).toString( 16 );
+      hex += value.length == 1 ? '0' + value : value;
+   }
+   return hex;
+}
 
 //HTMLElement.prototype.setStyle 
 HTMLElement.prototype.setStyle = function (styleName, val) {
@@ -84,6 +107,28 @@ HTMLElement.prototype.setStyle = function (styleName, val) {
 	return this.style[styleName] = val;
 };
 
+/** 
+ * @function toDashes
+ * 
+ * Transforms string written in "camelCase" into "dashed-notation"
+ *
+ * @param string {String}
+ *
+ * @returns {String}
+**/
+function toDashes( string ) {
+   var chars = [];   // we use array for the concatenation as it's faster
+   for ( var i=0, l=string.length; i<l; i += 1 ) {
+      var character = string.charAt(i).toLowerCase(); // lower-case the char
+      if ( string.charAt(i) !== character ) {
+         // prepend a dash
+         chars.push('-');
+      }
+      chars.push( character );
+   }
+   return chars.join('');
+}
+
 // test cases
 var elem    = getElemsByClass('test-element')[0];
 var styles  = {
@@ -93,14 +138,12 @@ var styles  = {
 	'borderRadius'    : '5px',
 	'opacity'         : 0.5
 };
-
+elem.style.filter  = 'alpha(opacity=50)'; // IE fallback
 for ( var name in styles ) {
    elem.setStyle( name, styles[ name ] );
-   console.assert( elem.getStyle( name ) == styles[ name ], 'Element does not have ' + name + ' style!' );
+   console.assert( elem.getStyle( toDashes(name) ) == styles[ name ], 'Element does not have ' + name + ' style!' );
 }
-   
 
-  
 </script>
 </body>
 </html>
