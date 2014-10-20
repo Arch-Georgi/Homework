@@ -9,8 +9,6 @@
 	</div>
    <script type="text/javascript">
 		 ! HTMLElement.prototype.addEventListener && (HTMLElement.prototype.addEventListener = function ( name, handler ) {
-		// first make sure the platform supports `attachEvent`
-		// `this` refers to the HTML element
 		if (type == 'DOMContentLoaded' && contentLoaded) {
 			return;
 		}
@@ -25,10 +23,8 @@
 				this.cancelBubble = true;
 			}
 		}) );
-		}.bind( this, handler ); // bind `this` element and the `handler`
-		// attach the event
+		}.bind( this, handler );
 		this.attachEvent( 'on' + name, proxy_handler );
-		// map the real handler with the originally passed handler
 		registry.add( name, this, handler, proxy_handler );
 		}
 			return this;
