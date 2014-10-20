@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Attach Event</title>
+</head>
+<body>
+	<div>
+	   <p style="background:blue; color: white">test test test</p>
+	</div>
+   <script type="text/javascript">
+		 ! HTMLElement.prototype.addEventListener && (HTMLElement.prototype.addEventListener = function ( name, handler ) {
+		// first make sure the platform supports `attachEvent`
+		// `this` refers to the HTML element
+		if (type == 'DOMContentLoaded' && contentLoaded) {
+			return;
+		}
+		if ( this.attachEvent ) {
+		var proxy_handler = function ( handler ) {
+		handler.call( this, extend( window.event, {
+					target : window.event.srcElement,
+					preventDefault : function () {
+					this.returnValue = false;
+				},
+				stopPropagation : function () {
+				this.cancelBubble = true;
+			}
+		}) );
+		}.bind( this, handler ); // bind `this` element and the `handler`
+		// attach the event
+		this.attachEvent( 'on' + name, proxy_handler );
+		// map the real handler with the originally passed handler
+		registry.add( name, this, handler, proxy_handler );
+		}
+			return this;
+		});
+		document.addEventListener("DOMContentLoaded", function(event) {
+			alert("DOM fully loaded and parsed");
+		});
+   </script>
+</body>
+</html>
