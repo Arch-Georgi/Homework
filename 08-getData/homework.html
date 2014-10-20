@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Get Data</title>
+</head>
+<body>
+   <script type="text/javascript">
+		var data = [
+	   { label : 'Ordered Item 1' },
+	   {
+		  label : 'Ordered Item 2',
+		  list  : [
+			 { label : 'Ordered Sub Item 2.1' },
+			 { label : 'Ordered Sub Item 2.2' },
+			 { label : 'Ordered Sub Item 2.3' }
+		  ]
+	   },
+	   {
+		  label : 'Ordered Item 3',
+		  list  : {
+			 1 : {
+				label : 'Unordered Sub Item 3.1',
+				list  : {
+				   1: { label : 'Unordered Sub Item 3.1.1' },
+				   2: { label : 'Unordered Sub Item 3.1.2' }
+				}
+			 },
+			 2 : { label : 'Sub Item 3.2' },
+			 3 : {
+				label : 'Sub Item 3.3',
+				list  : [
+				   { label : 'Ordered Sub Item 3.3.1' },
+				   { label : 'Ordered Sub Item 3.3.2' },
+				   { label : 'Ordered Sub Item 3.3.3' }
+				]
+			 }
+		  }
+	   }
+	];
+
+	function getData(a, fontSize) {
+		var str = "<ol>";
+		fontSize = fontSize || 16; 
+		for ( var i=0, l=a.length; i<l; i+=1 ){
+			str += "<li font-size:" + fontSize + "px >" + a[i].label;
+			if( a[i].list && a[i].list.length) {
+				str += getData( a[i].list, fontSize-2 );
+			}
+			str += "</li>";
+		}
+		str += "</ol>";
+		return str;
+	}
+	document.write(getData(data));
+   </script>
+</body>
+</html>
