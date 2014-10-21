@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Get Data</title>
+   <title>Generated HTML</title>
 </head>
 <body>
    <script type="text/javascript">
-	var data = [
+		var data = [
 	   { label : 'Ordered Item 1' },
 	   {
 		  label : 'Ordered Item 2',
@@ -37,17 +37,41 @@
 		  }
 	   }
 	];
-	function getData(a, fontSize) {
-		var str = "<ol>";
-		fontSize = fontSize || 16; 
-		for ( var i=0, l=a.length; i<l; i+=1 ){
-			str += "<li font-size:" + fontSize + "px >" + a[i].label;
-			if( a[i].list && a[i].list.length) {
-				str += getData( a[i].list, fontSize-2 );
-			}
-			str += "</li>";
+
+	 function typeOf( variable ) {
+		// calculations
+		switch(true) {
+		case variable === null : return 'null';
+		case Number.isNaN(variable) : return 'NaN';
+		case variable instanceof Boolean : return 'boolean';
+		case variable instanceof String : return 'string';
+		case variable instanceof Number : return 'number';
+		case variable instanceof Array : return 'array';
 		}
-		str += "</ol>";
+		return typeof variable;
+	}
+
+	function getData(a, fontSize) {
+		fontSize = fontSize || 16; 
+		function loop(){
+			for (var i in a) {
+				str += '<li style="font-size:' + fontSize + 'px">' + a[i].label;
+				if( a[i].list) {
+					str += getData( a[i].list, fontSize-2 );
+				}
+				str += "</li>";
+			}
+		}
+		if (typeOf(a)==='array') {
+			var str = "<ol>";
+			loop ();
+			str += "</ol>";
+		}
+		else {
+			var str = "<ul>";
+			loop ();
+			str += "</ul>";
+		}
 		return str;
 	}
 	document.write(getData(data));
