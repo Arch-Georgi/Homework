@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+   <style type="text/css">
+   body {
+      margin: 0;
+      padding: 10px 20px;
+      font-family: Helvetica, Arial, sans-serif;
+   }
+   
+   td:first-child { width: 300px }
+   td { width: 200px; }
+   td + td { text-align: right; }
+   td div {
+      overflow: hidden;
+      max-height: 100px;
+   }
+   </style>
+   
+  
+</head>
+<body>
+   <h1>DOM Operations practice</h1>
+   <h2>Preferences</h2>
+   <p>Setting the rows' <i>max-height</i> will make the rows no bigger than the specified height, no matter what size has been set to the specific row or how big the content is</p>
+   <p>Row max-height: <input type="text" size="3" id="max-height">px
+   
+   <h2>Table</h2>
+    <script type="text/javascript">
+   var table_data = [
+      [ 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 10 ],
+      [ 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 20 ],
+      [ 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 5 ],
+      [ 'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 255 ],
+      [ 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 186 ]
+   ];
+   function createTable(tableData) {
+     var table = document.createElement('table'),
+      tableBody = document.createElement('tbody');
+
+     tableData.forEach(function(rowData) {
+       var row = document.createElement('tr');
+       rowData.forEach(function(cellData) {
+         var cell = document.createElement('td');
+         cell.appendChild(document.createTextNode(cellData));
+         row.appendChild(cell);
+       });
+       tableBody.appendChild(row);
+     });
+     table.appendChild(tableBody);
+     document.body.appendChild(table);
+   }
+   createTable(table_data); 
+   document.getElementsByTagName("TABLE")[0].setAttribute("cellspacing","3"); 
+   document.getElementsByTagName("TABLE")[0].setAttribute("cellpadding","3"); 
+   document.getElementsByTagName("TABLE")[0].setAttribute("border","1"); 
+
+	var td = document.createElement("td"),
+	cells = document.getElementsByTagName("TR");
+
+   for (var i = 0, l = cells.length; i < l; i+=1) { 
+		var tdclone = td.cloneNode(true),
+		a = cells[i];
+		a.appendChild(tdclone);
+		tdclone.appendChild(document.createTextNode("Some Text " + [i]));
+   }
+   </script>
+</body>
+</html>
