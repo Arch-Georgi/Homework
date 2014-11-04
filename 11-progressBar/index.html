@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script type="text/javascript">
+			var prg_width = 200,
+			endNum = prompt("Enter a number:");
+			function progressBar() {
+				var node  = document.getElementById('progress'),
+				tnode = document.getElementById('progressText'),
+				w     = node.style.width.match(/\d+/);
+				if (w == prg_width) {
+					w = 0;
+				}
+				var val = parseInt(w) + 5;
+				node.style.width = val + 'px';
+				tnode.innerHTML = (val/prg_width * 100).toFixed(1) + ' %';
+			}
+        </script>
+    </head>
+    <body onload="var progress_run_id = setInterval(progressBar, endNum);">
+		<div style="width: 200px;">
+			<div id="progressText" style="text-align: center;">&nbsp;</div>
+			<div style="border: 1px solid black; height:5px;">
+				<div id="progress" style="height:5px; width:0px; background-color:red;"/>
+			</div>
+		</div>
+    </body>
+</html>
