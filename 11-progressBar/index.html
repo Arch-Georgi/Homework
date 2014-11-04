@@ -1,18 +1,18 @@
 <html>
     <head>
         <script type="text/javascript">
-			var prg_width = 200,
+			var prgWidth = 200,
 			endNum = prompt("Enter a number:");
 			function progressBar() {
 				var node  = document.getElementById('progress'),
 				tnode = document.getElementById('progressText'),
 				w     = node.style.width.match(/\d+/);
-				if (w == prg_width) {
+				if (w == prgWidth) {
 					w = 0;
 				}
 				var val = parseInt(w) + 5;
 				node.style.width = val + 'px';
-				tnode.innerHTML = (val/prg_width * 100).toFixed(1) + ' %';
+				tnode.innerHTML = (val/prgWidth * 100).toFixed(1) + ' %';
 			}
         </script>
     </head>
